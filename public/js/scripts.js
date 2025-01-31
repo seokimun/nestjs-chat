@@ -1,4 +1,5 @@
 const socket = io('/');
+
 const getElementById = (id) => document.getElementById(id) || null;
 
 const bannerElement = getElementById('banner');
@@ -7,6 +8,7 @@ const chatFormElement = getElementById('chat_form');
 
 function helloUser() {
     const username = prompt('닉네임을 적어주세요');
+    socket.emit('new_user', username);
 }
 
 function init() {
