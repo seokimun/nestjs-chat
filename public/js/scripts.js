@@ -6,19 +6,24 @@ const bannerElement = getElementById('banner');
 const chatBoxElement = getElementById('chat_box');
 const chatFormElement = getElementById('chat_form');
 
-//소켓 핸들러
+//글로벌 소켓 핸들러
 socket.on('user_connected', (username) => {
-    console.log(`${username} connected!`);
+    drawChat(`${username}님 연결되었습니다!`);
 });
 
-//채팅보내기
+socket.on('new_chat', (data) => {
+    const { chat, username } = data;
+    drawChat(`${username}: ${chat}`);
+});
+
+//채팅 불러오기
 const handleSubmit = (event) => {
     event.preventDefault();
     const inputValue = event.target.elements[0].value;
     if (inputValue !== '') {
         socket.emit('submit_chat', inputValue);
 
-        drawChat(inputValue);
+        drawChat(`me : ${inputValue}`);
         event.target.elements[0].value = '';
     }
 };
@@ -41,10 +46,10 @@ const drawChat = (message) => {
 
 //유저 닉네임 작성
 function helloUser() {
-    // const username = prompt('닉네임을 적어주세요');
-    // socket.emit('new_user', username, (data) => {
-    //     drawbaneer(data);
-    // });
+    const username = prompt('닉네임을 적어주세요');
+    socket.emit('new_user', username, (data) => {
+        drawBaneer(data);
+    });
 }
 
 function init() {
