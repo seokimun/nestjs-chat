@@ -17,12 +17,27 @@ const handleSubmit = (event) => {
     const inputValue = event.target.elements[0].value;
     if (inputValue !== '') {
         socket.emit('submit_chat', inputValue);
+
+        drawChat(inputValue);
+        event.target.elements[0].value = '';
     }
 };
 
 //유저 환영인사 배너
-const drawbaneer = (username) =>
+const drawBaneer = (username) =>
     (bannerElement.innerText = `Hello ${username} :)`);
+
+//유저채팅 띄우기
+const drawChat = (message) => {
+    const wrapperChatBox = document.createElement('div');
+    const chatBox = `
+    <div>
+        ${message}
+    <div>
+    `;
+    wrapperChatBox.innerHTML = chatBox;
+    chatBoxElement.append(wrapperChatBox);
+};
 
 //유저 닉네임 작성
 function helloUser() {
