@@ -14,7 +14,10 @@ export class ChattingEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => SocketEntity, (socket) => socket.chatting, { eager: true })
+    @ManyToOne(() => SocketEntity, (socket) => socket.chatting, {
+        eager: true,
+        onDelete: 'CASCADE',
+    })
     @JoinColumn({ name: 'user_id' })
     user: SocketEntity;
 

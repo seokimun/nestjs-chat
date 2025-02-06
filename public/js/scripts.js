@@ -16,6 +16,8 @@ socket.on('new_chat', (data) => {
     drawChat(`${username}: ${chat}`);
 });
 
+socket.on('disconnect_user', (username) => drawChat(`${username}: bye...`));
+
 //채팅 불러오기
 const handleSubmit = (event) => {
     event.preventDefault();
