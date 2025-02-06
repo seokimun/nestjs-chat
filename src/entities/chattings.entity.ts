@@ -6,17 +6,17 @@ import {
     ManyToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { SocketEntity } from './sockets.entity';
+import { Socket } from './sockets.entity';
 import { IsNotEmpty, IsString } from 'class-validator';
 
 @Entity('chattings')
-export class ChattingEntity {
+export class Chatting {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => SocketEntity, (socket) => socket.chatting, { eager: true })
+    @ManyToOne(() => Socket, (socket) => socket.chatting, { eager: true })
     @JoinColumn({ name: 'user_id' })
-    user: SocketEntity;
+    user: Socket;
 
     @Column({ type: 'text', nullable: false })
     @IsNotEmpty()
