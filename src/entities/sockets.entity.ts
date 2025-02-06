@@ -7,10 +7,10 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
-import { Chatting } from './chattings.entity';
+import { ChattingEntity } from './chattings.entity';
 
 @Entity('sockets')
-export class Socket {
+export class SocketEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -19,8 +19,8 @@ export class Socket {
     @IsString()
     username: string;
 
-    @OneToMany(() => Chatting, (chat) => chat.user)
-    chatting: Chatting[];
+    @OneToMany(() => ChattingEntity, (chat) => chat.user)
+    chatting: ChattingEntity[];
 
     @CreateDateColumn({ type: 'datetime' })
     created_at: Date;
