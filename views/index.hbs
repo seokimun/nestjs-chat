@@ -1,17 +1,47 @@
 <html>
     <head>
         <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>랜덤채팅</title>
+        <link
+            href='https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'
+            rel='stylesheet'
+        />
         <link href='css/styles.css' rel='stylesheet' />
     </head>
     <body>
-        <div id='banner'></div>
-        <div id='chat_box'></div>
-        <form id='chat_form'>
-            <input placeholder='채팅을 입력하세요...' />
+        <div style='overscroll-behavior: none'>
+            <div
+                class='fixed w-full bg_nest_color h-16 pt-2 text-white flex justify-between shadow-md'
+                style='top: 0px; overscroll-behavior: none'
+            >
+                <div
+                    id='banner'
+                    class='ml-5 my-3 text-green-100 font-bold text-lg tracking-wide'
+                >
+                </div>
+            </div>
+            <div id='chat_box' class='mt-20 mb-16 overflow-auto'></div>
+        </div>
+
+        <form
+            id='chat_form'
+            class='fixed w-full mt-5 mb-0 flex justify-between bg-gray-700'
+            style='bottom: 0px'
+        >
+            <input
+                id='chat_message_input'
+                class='flex-grow m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 resize-none'
+                placeholder='메세지 입력'
+                style='outline: none'
+            />
             <button type='submit'>Chat</button>
         </form>
 
+        <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+        <script
+            src='https://polyfill.io/v3/polyfill.min.js?features=default%2Ces2015%2Ces2016%2Ces2017%2Ces2018%2Ces2019'
+        ></script>
         <script
             src='https://cdn.socket.io/3.1.3/socket.io.min.js'
             integrity='sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh'
