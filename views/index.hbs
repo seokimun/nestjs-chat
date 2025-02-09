@@ -26,16 +26,19 @@
 
         <form
             id='chat_form'
-            class='fixed w-full mt-5 mb-0 flex justify-between bg-gray-700'
-            style='bottom: 0px'
+            class='fixed bottom-0 w-full bg-black mb-0 flex items-center justify-between p-2'
         >
             <input
                 id='chat_message_input'
-                class='flex-grow m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 resize-none'
-                placeholder='메세지 입력'
-                style='outline: none'
+                class='m-2 h-12 p-3 pr-4 rounded-full resize-none'
+                placeholder='메시지 입력'
             />
-            <button type='submit'>Chat</button>
+
+            <button type='submit' class='send-button'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+                    <path d='M2 21l21-9L2 3v7l15 2-15 2v7z' />
+                </svg>
+            </button>
         </form>
 
         <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
