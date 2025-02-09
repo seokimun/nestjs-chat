@@ -37,22 +37,39 @@ const drawBanner = (username) =>
 //유저채팅 띄우기
 const drawChat = (message, isMe = false) => {
     const wrapperChatBox = document.createElement('div');
-    wrapperChatBox.className = 'clearfix';
-    let chatBox;
-    if (!isMe)
-        chatBox = `
-        <div class='bg-gray-300 w-3/4 mx-4 my-2 p-2 rounded-lg clearfix break-all'>
-            ${message}
-        </div>
-    `;
-    else
-        chatBox = `
-        <div class='bg-white w-3/4 ml-auto mr-4 my-2 p-2 rounded-lg clearfix break-all'>
-            ${message}
-        </div>
-    `;
-    wrapperChatBox.innerHTML = chatBox;
-    chatBoxElement.append(wrapperChatBox);
+    wrapperChatBox.classList.add('flex', 'w-full', 'my-2'); // Flexbox 사용
+
+    // 채팅 박스 생성
+    const chatBox = document.createElement('div');
+    chatBox.classList.add(
+        'inline-block', // 글자 수에 따라 크기를 조정
+        'max-w-xs', // 최대 너비 제한 (20rem)
+        'break-words', // 단어 길이가 초과되면 줄바꿈
+        'px-3',
+        'py-3', // 안쪽 여백
+        'rounded-2xl', // 모서리를 둥글게
+        'my-1', // 메시지 간 간격
+    );
+
+    if (isMe) {
+        wrapperChatBox.classList.add('justify-end');
+        chatBox.classList.add(
+            'bg-gray-800',
+            'text-gray-200',
+            'ml-auto',
+            'mr-4',
+        );
+    } else {
+        wrapperChatBox.classList.add('justify-start');
+        chatBox.classList.add('text-gray-200', 'ml-4');
+        chatBox.style.backgroundColor = '#262626';
+    }
+
+    chatBox.textContent = message; // 메시지 내용 설정
+    wrapperChatBox.appendChild(chatBox); // wrapper에 채팅 박스 추가
+    chatBoxElement.appendChild(wrapperChatBox); // 채팅 창에 추가
+
+    chatBoxElement.scrollTop = chatBoxElement.scrollHeight;
 };
 
 //유저 닉네임 작성
