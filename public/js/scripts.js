@@ -25,22 +25,31 @@ const handleSubmit = (event) => {
     if (inputValue !== '') {
         socket.emit('submit_chat', inputValue);
 
-        drawChat(`me : ${inputValue}`);
+        drawChat(`me : ${inputValue}`, true);
         event.target.elements[0].value = '';
     }
 };
 
 //유저 환영인사 배너
-const drawBaneer = (username) =>
+const drawBanner = (username) =>
     (bannerElement.innerText = `Hello ${username} :)`);
 
 //유저채팅 띄우기
-const drawChat = (message) => {
+const drawChat = (message, isMe = false) => {
     const wrapperChatBox = document.createElement('div');
-    const chatBox = `
-    <div>
-        ${message}
-    <div>
+    wrapperChatBox.className = 'clearfix';
+    let chatBox;
+    if (!isMe)
+        chatBox = `
+        <div class='bg-gray-300 w-3/4 mx-4 my-2 p-2 rounded-lg clearfix break-all'>
+            ${message}
+        </div>
+    `;
+    else
+        chatBox = `
+        <div class='bg-white w-3/4 ml-auto mr-4 my-2 p-2 rounded-lg clearfix break-all'>
+            ${message}
+        </div>
     `;
     wrapperChatBox.innerHTML = chatBox;
     chatBoxElement.append(wrapperChatBox);
@@ -50,7 +59,7 @@ const drawChat = (message) => {
 function helloUser() {
     const username = prompt('닉네임을 적어주세요');
     socket.emit('new_user', username, (data) => {
-        drawBaneer(data);
+        drawBanner(data);
     });
 }
 
