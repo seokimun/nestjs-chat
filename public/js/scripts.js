@@ -31,8 +31,7 @@ const handleSubmit = (event) => {
 };
 
 //유저 환영인사 배너
-const drawBanner = (username) =>
-    (bannerElement.innerText = `Hello ${username} :)`);
+const drawBanner = (username) => (bannerElement.innerText = `${username}`);
 
 //유저채팅 띄우기
 const drawChat = (message, isMe = false) => {
