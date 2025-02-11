@@ -10,6 +10,11 @@ body {
     color: #989898;
 }
 
+#chat_box {
+    max-height: calc(100vh - 150px); /* 채팅창 높이 제한 */
+    overflow-y: auto; /* 자동 스크롤 허용 */
+}
+
 /* 채팅 입력창 스타일 */
 #chat_message_input {
     flex-grow: 1;
